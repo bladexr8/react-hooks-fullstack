@@ -4,7 +4,7 @@
  */
 
  import React, { useContext, useEffect } from 'react';
- import { Router, Route, Routes, Navigate } from 'react-router';
+ import { Router, Route, Routes, Navigate } from 'react-router-dom';
  import history from './utils/history';
  import Context from './utils/context';
  import AuthCheck from './utils/authcheck';
@@ -19,13 +19,13 @@
  
  
  
- const PrivateRoute = ({component: Component, auth }) => (
-   <Route render={props => auth === true
-     ? <Component auth={auth} {...props} />
-     : <Navigate to={{pathname:'/'}} />
-   }
-   />
- )
+ /*const PrivateRoute = ({component: Component, auth }) => (
+  <Route render={props => auth === true
+    ? <Component auth={auth} {...props} />
+    : <Navigate to={{pathname:'/'}} />
+  }
+  />
+ )*/
 
  const AppRoutes = () => {
   const context = useContext(Context)
@@ -45,12 +45,7 @@
             <Route path='/hookscontainer' element={HooksContainer1} />
             <Route path='/authcheck' element={AuthCheck} />
 
-            <PrivateRoute path='/privateroute'
-                          auth={context.authState}
-                          element={PrivateComponent} />
-            <PrivateRoute path="/profile"
-                          auth={context.authState}
-                          element={Profile} />
+            
             <Route path='/callback'
                           render={(props) => {
                             context.handleAuth(props);                                                            
@@ -62,3 +57,12 @@
 )}
 
 export default AppRoutes;
+
+/**
+ * <PrivateRoute path='/privateroute'
+                          auth={context.authState}
+                          element={PrivateComponent} />
+            <PrivateRoute path="/profile"
+                          auth={context.authState}
+                          element={Profile} />
+ */
