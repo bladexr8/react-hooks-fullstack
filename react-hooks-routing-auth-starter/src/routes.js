@@ -4,7 +4,7 @@
  */
 
  import React, { useContext, useEffect } from 'react';
- import { Router, Route, Routes, Navigate } from 'react-router-dom';
+ import { Router, BrowserRouter, Route, Routes, Navigate } from 'react-router-dom';
  import history from './utils/history';
  import Context from './utils/context';
  import AuthCheck from './utils/authcheck';
@@ -33,7 +33,7 @@
 
     return(
       <div>
-        <Router history={history} >
+        <BrowserRouter location={history.location} navigator={history} >
         <Header />
         <br />
         <br />
@@ -52,7 +52,7 @@
                             return <Callback />}} />
           </Routes>
         </div>
-        </Router>
+        </BrowserRouter>
       </div>
 )}
 
