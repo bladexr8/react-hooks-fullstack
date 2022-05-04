@@ -4,7 +4,7 @@
  */
 
  import React, { useContext, useEffect } from 'react';
- import { Router, BrowserRouter, Route, Routes, Navigate } from 'react-router-dom';
+ import { BrowserRouter, Route, Routes, Navigate } from 'react-router-dom';
  import history from './utils/history';
  import Context from './utils/context';
  import AuthCheck from './utils/authcheck';
@@ -19,13 +19,13 @@
  
  
  
- /*const PrivateRoute = ({component: Component, auth }) => (
+ const PrivateRoute = ({component: Component, auth }) => (
   <Route render={props => auth === true
     ? <Component auth={auth} {...props} />
     : <Navigate to={{pathname:'/'}} />
   }
   />
- )*/
+ )
 
  const AppRoutes = () => {
   const context = useContext(Context)
@@ -44,6 +44,7 @@
             <Route path='/profile' element={Profile} />
             <Route path='/hookscontainer' element={HooksContainer1} />
             <Route path='/authcheck' element={AuthCheck} />
+
 
             
             <Route path='/callback'
