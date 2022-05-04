@@ -4,7 +4,7 @@
  */
 
  import React, { useContext, useEffect } from 'react';
- import { Router, Route, Switch, Redirect } from 'react-router';
+ import { Router, Route, Routes, Navigate } from 'react-router';
  import history from './utils/history';
  import Context from './utils/context';
  import AuthCheck from './utils/authcheck';
@@ -22,12 +22,12 @@
  const PrivateRoute = ({component: Component, auth }) => (
    <Route render={props => auth === true
      ? <Component auth={auth} {...props} />
-     : <Redirect to={{pathname:'/'}} />
+     : <Navigate to={{pathname:'/'}} />
    }
    />
  )
 
- const Routes = () => {
+ const AppRoutes = () => {
   const context = useContext(Context)
 
 
@@ -38,28 +38,27 @@
         <br />
         <br />
         <div>
-          <Switch>
-            <Route exact path='/' component={Home} />
-            <Route path='/hooksform' component={HooksForm} />
-            <Route path='/profile' component={Profile} />
-            <Route path='/hookscontainer' component={HooksContainer1} />
-            <Route path='/authcheck' component={AuthCheck} />
+          <Routes>
+            <Route exact path='/' element={Home} />
+            <Route path='/hooksform' element={HooksForm} />
+            <Route path='/profile' element={Profile} />
+            <Route path='/hookscontainer' element={HooksContainer1} />
+            <Route path='/authcheck' element={AuthCheck} />
 
             <PrivateRoute path='/privateroute'
                           auth={context.authState}
-                          component={PrivateComponent} />
+                          element={PrivateComponent} />
             <PrivateRoute path="/profile"
                           auth={context.authState}
-                          component={Profile} />
+                          element={Profile} />
             <Route path='/callback'
-         render={(props) => {
-                       context.handleAuth(props);                                                            return <Callback />}} />
-
-
-          </Switch>
+                          render={(props) => {
+                            context.handleAuth(props);                                                            
+                            return <Callback />}} />
+          </Routes>
         </div>
         </Router>
       </div>
 )}
 
-export default Routes;
+export default AppRoutes;

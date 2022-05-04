@@ -12,7 +12,7 @@ import * as Reducer1 from './store/reducers/plain_reducer';
 import * as AuthReducer from './store/reducers/auth_reducer';
 import * as FormReducer from './store/reducers/form_reducer';
 
-import Routes from './routes';
+import AppRoutes from './routes';
 
 import Auth from './utils/auth';
 
@@ -120,7 +120,7 @@ const ContextState = () => {
           authObj: auth
           
         }}>
-          <Routes />
+          <AppRoutes />
         </Context.Provider>
     </div>
   )

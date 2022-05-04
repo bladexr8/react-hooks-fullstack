@@ -12,3 +12,5 @@ const Callback = props => (
     Callback
   </div>
 );
+
+export default Callback;
