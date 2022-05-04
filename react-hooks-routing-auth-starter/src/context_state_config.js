@@ -16,6 +16,7 @@ import Routes from './routes';
 
 import Auth from './utils/auth';
 
+// initialise auth class
 const auth = new Auth()
 
 const ContextState = () => {
@@ -74,6 +75,13 @@ const ContextState = () => {
   }
 
   // Handle authentication from callback
+  // props.location.hash is a given react-router
+  // functionality that checks if any value in
+  // the URL hash fragment. If Auth0 successfully
+  // authenticates a user, the access and id tokens
+  // will be included in a hash after the url, making
+  // props.location.hash true, which will invoke
+  // the handleAuth function in the Auth class
   const handleAuthentication = (props) => {
     if (props.location.hash) {
       auth.handleAuth()
@@ -106,6 +114,9 @@ const ContextState = () => {
 
           // Handle Auth
           handleAuth: (props) => handleAuthentication(props),
+          // pass down entire Auth class and allow all
+          // components to access our authentication
+          // functions and variables
           authObj: auth
           
         }}>
